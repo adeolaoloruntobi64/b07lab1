@@ -5,14 +5,21 @@ public class Polynomial {
 
     public Polynomial() {
         this.coeffs = new double[1];
+        // Technically, it is 0 already, but I will be explicit
+        this.coeffs[0] = 0;
     }
 
     public Polynomial(double[] coeffs) {
-        this.coeffs = coeffs;
+        // checking for len = 0 is probably too pedantic since we have
+        // a no-arg constructor anyways
+        this.coeffs = new double[coeffs.length];
+        for (int i = 0; i < coeffs.length; i++) {
+            this.coeffs[i] = coeffs[i];
+        }
     }
 
     public Polynomial add(Polynomial other) {
-        // Which one is shortest
+        // Which one is longest
         int longestLen = Math.max(this.coeffs.length, other.coeffs.length);
         double[] coeffs = new double[longestLen];
         for (int i = 0; i < this.coeffs.length; i++) {
